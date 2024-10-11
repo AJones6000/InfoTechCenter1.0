@@ -3,7 +3,8 @@ import time  # Import the time module for time-related functions
 
 # Print a welcome message to the user
 print("\n\tWelcome to InfoTechCenter\n")
-
+TimeToSleep=1 #variable to set the time library to 1 seconds
+time.sleep(TimeToSleep)#calling the TimeToSleep variable
 # Initialize variables
 x = 0  # Counter for booting iterations
 ellipsis = 0  # Counter for the ellipsis (dots) in the booting message
