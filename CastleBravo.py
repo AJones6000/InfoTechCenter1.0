@@ -1,62 +1,64 @@
-print("\n***************************\n")  # Print a separator for better readability in the output
-
-print("Gasoline Branch")  # Print the section title
-
-import random  # Import the random module to randomly choose values for gas level and gas station
-from time import sleep  # Import sleep from the time module to introduce pauses in the output
+import random  # Import random to randomly select values for gas level and gas stations
+from time import sleep  # Import sleep to introduce delays for a more realistic simulation
 
 
 # Function to simulate the current gas level
 def gasLevelGauge():
-    GasLevelList = ["Empty", "Low", "Quarter Tank", "Half Tank", "Three Quarter Tank", "Full Tank"]
-    # Randomly choose a gas level from the list
-    return random.choice(GasLevelList)
+    # List of possible gas levels in the tank
+    return random.choice(["Empty", "Low", "Quarter Tank", "Half Tank", "Three Quarter Tank", "Full Tank"])
 
 
-# Function to simulate a random gas station
+# Function to simulate finding a nearby gas station
 def gasStation():
-    gasStationList = ["VP", "Shell", "Sams Club", "Marathon", "Mobile", "Speedway", "Circle K"]
-    # Randomly choose a gas station from the list
-    return random.choice(gasStationList)
+    # List of gas station brands
+    return random.choice(["VP", "Shell", "Sams Club", "Marathon", "Mobile", "Speedway", "Circle K"])
 
 
-# Function to alert the driver based on the current gas level
+# Function to handle pluralization of miles
+def formatMiles(miles):
+    return f"{miles} mile{'s' if miles != 1 else ''}"
+
+
+# Function to handle searching for the closest gas station and printing the message
+def findNearestGasStation(miles):
+    station = gasStation()  # Find a random nearby gas station
+    print(f"The closest gas station is {station}, which is {formatMiles(miles)} away.")
+
+
+# Function to provide a gas level alert based on the current tank level
 def gasLevelAlert():
-    # Generate a random distance between 1 and 25 miles for a "Low" gas level
-    milesToGasStationLow = round(random.uniform(1, 25), 1)
-    # Generate a random distance between 25.1 and 50 miles for a "Quarter Tank" gas level
-    milesToGasStationQuarterTank = round(random.uniform(25.1, 50), 1)
+    # Define random distances to the nearest gas station
+    miles_to_station_low = round(random.uniform(1, 25), 1)  # For "Low" level
+    miles_to_station_quarter = round(random.uniform(25.1, 50), 1)  # For "Quarter Tank"
 
-    # Get the current gas level using the gasLevelGauge function
-    gasLevelIndicator = gasLevelGauge()
+    # Get the current gas level
+    gas_level = gasLevelGauge()
 
-    # Check the gas level and print the appropriate message
-    if gasLevelIndicator == "Empty":
-        print("WARNING YOU ARE ON EMPTY")  # Critical alert for an empty tank
-        sleep(3)  # Pause for 3 seconds before the next message
-        print("\n calling AAA")  # Simulate calling for roadside assistance
+    # Handling based on gas level
+    if gas_level == "Empty":
+        print("WARNING: Your tank is EMPTY!")  # Critical warning
+        sleep(3)  # Pause for urgency
+        print("\nCalling AAA for roadside assistance...")  # Simulate calling AAA
 
-    elif gasLevelIndicator == "Low":
-        print("Your Gas Tank Is Very Low, Checking GPS For Gas Station")  # Alert for a low gas level
-        sleep(2)  # Pause for 2 seconds
-        print("The Closest Gas Station Is", gasStation(), "Which Is", milesToGasStationLow,
-              "Mile Away")  # Show nearest gas station
+    elif gas_level == "Low":
+        print("Your gas tank is very low! Searching for nearby gas stations...")
+        sleep(2)
+        findNearestGasStation(miles_to_station_low)  # Reuse the generic gas station search logic
 
-    elif gasLevelIndicator == "Quarter Tank":
-        print("Your Gas Tank Is A Quarter Tank, Checking GPS For Gas Station")  # Alert for a quarter tank level
-        sleep(2)  # Pause for 2 seconds
-        print("The Closest Gas Station Is", gasStation(), "Which Is", milesToGasStationQuarterTank,
-              "Mile Away")  # Show nearest gas station
+    elif gas_level == "Quarter Tank":
+        print("Your gas tank is at a quarter. Searching for nearby gas stations...")
+        sleep(2)
+        findNearestGasStation(miles_to_station_quarter)  # Reuse the generic gas station search logic
 
-    elif gasLevelIndicator == "Half Tank":
-        print("Your Gas Tank Is Half Full")  # Inform the user that the gas level is half full
+    elif gas_level == "Half Tank":
+        print("Your gas tank is half full.")  # Inform the user
 
-    elif gasLevelIndicator == "Three Quarter Tank":
-        print("You Gas Tank Is Three Quarters Full")  # Inform the user that the gas level is three-quarters full
+    elif gas_level == "Three Quarter Tank":
+        print("Your gas tank is three-quarters full.")  # Inform the user
 
     else:
-        print("You Have A Full Tank")  # Inform the user that the gas tank is full
+        print("Your tank is full. You're good to go!")  # Full tank message
 
 
-# Call the gasLevelAlert function to run the alert system
+# Call the gasLevelAlert function to initiate the gas level check
 gasLevelAlert()
