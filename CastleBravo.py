@@ -27,7 +27,7 @@ while x != 20:
     if x == 20:
         print("\n\nOperating System Booted Up")
 # Print a divider line to make the output clearer
-print("\n*******************************************\n")
+print("\n***********************************************************************************************************\n")
 
 # Print the title for the weather branch section
 print("Weather Branch\n")
@@ -75,7 +75,7 @@ def vehicle_response_system(weather_alert):
 vehicle_response_system(weather_alert)
 
 
-print("\n***************************\n")
+print("\n***********************************************************************************************************\n")
 
 print("Gasoline Branch\n\n")
 
