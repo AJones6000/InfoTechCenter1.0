@@ -1,7 +1,10 @@
 
 import sys  # Import the sys module for system-specific parameters and functions
 import time  # Import the time module for time-related functions
-
+import random  # Import random to randomly select values for gas level and gas stations
+from time import sleep  # Import sleep to introduce delays for a more realistic simulation
+import random  # Used to randomly select a weather condition
+from time import sleep  # Used to add delays in the output for a more realistic effect
 # Print a welcome message to the user
 print("\n\tWelcome to InfoTechCenter\n")
 TimeToSleep=1 #variable to set the time library to 1 seconds
@@ -33,8 +36,7 @@ print("\n***********************************************************************
 print("Weather Branch\n")
 
 # Import necessary libraries
-import random  # Used to randomly select a weather condition
-from time import sleep  # Used to add delays in the output for a more realistic effect
+
 
 # Function to determine the weather condition
 def weather():
@@ -79,8 +81,7 @@ print("\n***********************************************************************
 
 print("Gasoline Branch\n\n")
 
-import random  # Import random to randomly select values for gas level and gas stations
-from time import sleep  # Import sleep to introduce delays for a more realistic simulation
+
 
 
 # Function to simulate the current gas level
